@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6244" systemVersion="14A329r" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="FacebookApp" syncable="YES">
+        <attribute name="appIDString" attributeType="String" syncable="YES"/>
+        <attribute name="appName" attributeType="String" syncable="YES"/>
+        <relationship name="fbPosts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FacebookPost" inverseName="fromApp" inverseEntity="FacebookPost" syncable="YES"/>
+    </entity>
+    <entity name="FacebookPost" representedClassName="SwiftFace.FacebookPost" syncable="YES">
+        <attribute name="created_at" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="facebookPostID" attributeType="String" defaultValueString="0" syncable="YES"/>
+        <attribute name="fbMessage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isLiked" attributeType="Boolean" syncable="YES"/>
+        <attribute name="likeURL" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="author" maxCount="1" deletionRule="Nullify" destinationEntity="FacebookUser" inverseName="posts" inverseEntity="FacebookUser" syncable="YES"/>
+        <relationship name="fromApp" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FacebookApp" inverseName="fbPosts" inverseEntity="FacebookApp" syncable="YES"/>
+    </entity>
+    <entity name="FacebookUser" representedClassName="SwiftFace.FacebookUser" syncable="YES">
+        <attribute name="facebookUserID" attributeType="String" syncable="YES"/>
+        <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="posts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FacebookPost" inverseName="author" inverseEntity="FacebookPost" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="FacebookPost" positionX="3285" positionY="2738" width="128" height="148"/>
+        <element name="FacebookUser" positionX="3499" positionY="2727" width="128" height="88"/>
+        <element name="FacebookApp" positionX="3114" positionY="2738" width="128" height="88"/>
+    </elements>
+</model>
